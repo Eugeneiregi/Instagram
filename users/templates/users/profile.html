@@ -1,0 +1,22 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <h1>Profile</h1>
+        <img src="{{user.profile.profile_photo.url}}" alt="" class='rounded-circle'>
+        <p>{{user.username}}</p>
+    </div>
+  </div>
+  <div class="row">
+      {%for image in user_images%}
+      <div class="col-lg-4 col-md-6">
+          <div class="card" style="width: 18rem;">
+              <a href="{% url 'single_image' image_id=image.id %}"><img src='{{image.image.url}}' class="card-img-top" alt="..."></a>
+            </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container">'
+    <div class="row">
+      <div class="col">
+         <img src="{{single_image.image.url}}" alt="" class="img-fluid float-right">
+      </div>
+      <div class="col">
+        <h1>{{single_image.image_caption}}</h1>
+        <p>{{single_image.name}}</p>
+        <form action="" method = 'POST'>
+          {% csrf_token %}
+          {{comments_form | crispy}}
+          <button type='submit' class='btn btn-secondary'>Post comments</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>Image Comments</h1>
+        <div>
+          {%for comment in user_comments%}
+          <p>{{comment.comments}}</p>
+          <p>{{comment.date_posted}}</p>
+          <hr>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
