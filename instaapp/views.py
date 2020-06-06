@@ -14,7 +14,7 @@ def home(request):
 def post_image(request):
   current_user = request.user
   if request.method == 'POST':
-    image_form = ImagePostForm(request.POST, request.Files)
+    image_form = ImagePostForm(request.POST, request.FILES)
     if image_form.is_valid():
       image=image_form.save(commit=false)
       image.posted_by = current_user
